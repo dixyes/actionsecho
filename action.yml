@@ -1,0 +1,15 @@
+name: echo
+runs:
+  using: 'composite'
+  steps:
+    - name: echo
+      shell: ${{ 'Windows' == runner.os && 'type' || 'cat' }} {0}
+      run: |
+        {
+          "inputs": ${{toJSON(inputs)}},
+          "github": ${{toJSON(github)}},
+          "env": ${{toJSON(env)}},
+          "steps": ${{toJSON(steps)}},
+          "runner": ${{toJSON(runner)}},
+          "matrix": ${{toJSON(matrix)}}
+        }
